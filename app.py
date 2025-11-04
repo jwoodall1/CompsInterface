@@ -12,7 +12,24 @@ if not os.path.exists(DATA_DIR):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('homepage.html')
+
+@app.route('/form_prompted')
+def form_p():
+    return render_template('form_prompted.html')
+
+@app.route('/form_unprompted')
+def form_u():
+    return render_template('form_unprompted.html')
+
+@app.route('/tasks/task1')
+def task1():
+    return render_template('tasks/task1.html')
+
+@app.route('/taskmanagement.js')
+def task_management_js():
+    return app.send_static_file('taskmanagement.js')
+
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -37,4 +54,4 @@ def submit():
     return render_template('success.html')
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=676767)
+    app.run(debug=True, host='0.0.0.0', port=42069)
