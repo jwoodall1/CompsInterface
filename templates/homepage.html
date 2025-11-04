@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Tasks</h1>
+
+        <button onclick="location.href='/tasks/task1'">Begin Task 1</button>
+        <br>
+
+        <h1> Forms</h1>
+        <button onclick="location.href='/form_unprompted'">Unprompted Form</button>
+        <br>
+        <button onclick="location.href='/form_prompted'">Prompted Form</button>
+    </div>
+</body>
+</html>

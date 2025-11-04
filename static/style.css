@@ -75,3 +75,8 @@ button {
 button:hover {
     background-color: #1976D2;
 }
+
+.timer {
+    font-size: 36px;
+    text-align: center;
+}

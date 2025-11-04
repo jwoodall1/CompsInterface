@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <script src="/taskmanagement.js"></script>
+    <div class="container">
+        <h1>Test 1: Canva Image Recreation</h1>
+
+        <div class="instructions">
+            <h2></h2>
+            <p><strong>Recreate the given design, labeled "GOAL: Carleton College.pdf", in Canva with the provided assets.</strong></p>
+            <p><strong>You will have 5 minutes to complete this task. The timer will start as soon as you click the "Begin Test" button below.</strong></p>
+        </div>
+
+        <p class="timer" id="timer">05:00</p>
+
+        <button onclick=startTimer() id="startbutton">Begin Test ↗</button>
+    </div>
+</body>
+</html>
