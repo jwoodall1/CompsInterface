@@ -26,9 +26,9 @@ def form_u():
 def task1():
     return render_template('tasks/task1.html')
 
-@app.route('/taskmanagement.js')
-def task_management_js():
-    return app.send_static_file('taskmanagement.js')
+@app.route('/purgatory')
+def purgatory():
+    return render_template('purgatory.html')
 
 
 @app.route('/submit', methods=['POST'])
@@ -52,6 +52,27 @@ def submit():
         json.dump(submission, f, indent=2)
     
     return render_template('success.html')
+
+@app.route('/submit_contact_form', mehtods = ['Post'])
+def contact_data():
+    preferences = request.form.getlist('preferences')
+
+
+    submission = {
+        'timestamp': datetime.now().isoformat(),
+        'form_type': 'consent',
+        'preferences': preferences
+
+
+    }
+
+    filename = f"{DATA_DIR}/submission_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    with open(filename, 'w') as f:
+        json.dump(submission, f, indent=2)
+
+    return render_template('Homepage.html')
+
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=42069)

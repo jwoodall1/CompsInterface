@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission Successful</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Consent Form</h1>
+        <br>
+        <p>We are the Scaffolded Tech Support Comps group, consisting of Katherine Baker, Allie Hopper, Matthew Sigmond, Cuong Tran, and Jonathan Woodall, and we would like to recruit you for help with our project. We are conducting research related to the facilitation of tech support. Furthermore, we ask that you read this form and ask any questions you may have before agreeing to be in the study.</p>
+        <br>
+        <p>The process would take about an hour of your time, and you will be asked to perform a series of four computer-based tasks, and write a message to tech support for each. Your contribution will be valuable in advancing research in the computer science field. If you would like to receive a copy of our paper, please provide your email. There are no particular risks to participating in this study, as the questions are non-controversial and not personal.</p>
+        <br>
+        <p>Your written responses in this study will be recorded and kept in a secure database, stored on a Carleton server. We plan to analyze the resultant information for use in our comps project at Carleton. We will keep your identity confidential and use a pseudonym when referring to you. We will keep all facts about you private to the extent allowed by law. Your name and other facts that might identify you will not appear when we present this study or publish the results.</p>
+        <br>
+        <p>Your participation is voluntary and if you accept, you will be paid $15 after your duties are completed. Please share only what you are comfortable with sharing. You may decline to participate. If you change your mind about participating, you may stop at any time, although you will receive no financial compensation for partial completion of the experiment.</p>
+        <br>
+        <p>Please feel free to contact us or our advisor if you have any questions, concerns or comments about the project.</p>
+        <br>
+        <form action="/submit-data" method="post">
+        <input type="checkbox" id="option1" name="preferences" value="Consent">
+        <label for="option1">Accept</label><br>
+
+        <input type="checkbox" id="option2" name="preferences" value="No Consent">
+        <label for="option2">Decline</label><br>
+
+        <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

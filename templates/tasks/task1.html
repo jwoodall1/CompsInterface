@@ -7,21 +7,22 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <script src="/taskmanagement.js"></script>
+    <script src="{{ url_for('static', filename='taskmanagement.js') }}"></script>
     <div class="container">
         <h1>Test 1: Canva Image Recreation</h1>
 
         <div class="instructions">
             <h2></h2>
             <p><strong>Recreate the given design, labeled "GOAL: Carleton College.pdf", in Canva with the provided assets.</strong></p>
+            <p><strong>You will already be logged into Canva under a test account, so there is no need to use your personal account.</strong></p>
             <p><strong>You will have 5 minutes to complete this task. The timer will start as soon as you click the "Begin Test" button below. You are not allowed to use outside resources, such as Google or ChatGPT. If you finish the task early, raise your hand and we will confirm your completion. We will not be able to answer questions regarding the task, but are available if you are encountering technical difficulties with the testing platform.</strong></p>
         </div>
 
-        <a href="example.com">Download the starter files before you begin.↗</a>
+        <a href="{{ url_for('static', filename='Canva Task Assets.zip') }}">Download the starter files before you begin. ↗</a>
 
         <p class="timer" id="timer">05:00</p>
 
-        <button onclick=startTimer("https://canva.com") id="startbutton">Begin Test ↗</button>
+        <button onclick=startStopTimer("https://canva.com") id="startbutton">Begin Test ↗</button>
     </div>
 </body>
 </html>
