@@ -26,6 +26,19 @@ def form_u():
 def task1():
     return render_template('tasks/task1.html')
 
+@app.route('/tasks/task2')
+def task2():
+    return render_template('tasks/task2.html')
+
+@app.route('/tasks/task3')
+def task3():
+    return render_template('tasks/task3.html')
+
+@app.route('/tasks/task4')
+def task4():
+    return render_template('tasks/task4.html')
+
+
 @app.route('/purgatory')
 def purgatory():
     return render_template('purgatory.html')
@@ -53,7 +66,7 @@ def submit():
     
     return render_template('success.html')
 
-@app.route('/submit_contact_form', mehtods = ['Post'])
+@app.route('/submit_contact_form', methods = ['Post'])
 def contact_data():
     preferences = request.form.getlist('preferences')
 

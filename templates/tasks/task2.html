@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2: Gmail</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <script src="{{ url_for('static', filename='taskmanagement.js') }}"></script>
+    <div class="container">
+        <h1>Task 2: Gmail Labeling</h1>
+
+        <div class="instructions">
+            <h2></h2>
+            <p><strong>Create a label for a class you are currently enrolled in and apply it to all emails related to that class. Make sure that all new emails related to the course will also have the label applied to them. Then, create a task list with the same name as the label. Select all of the emails with the label you just created, create tasks for them, and move them into the task list you just created.</strong></p>
+            <p><strong>You will already be logged into Gmail under a test account, so there is no need to use your personal account.</strong></p>
+            <p><strong>You will have 5 minutes to complete this task, after which the tab will close. The timer will start as soon as you click the "Begin Test" button below. You are not allowed to use outside resources, such as Google or ChatGPT. If you finish the task early, raise your hand and we will confirm your completion. We will not be able to answer questions regarding the task, but are available if you are encountering technical difficulties with the testing platform.</strong></p>
+        </div>
+
+        <p class="timer" id="timer">05:00</p>
+
+        <button onclick=startStopTimer("https://gmail.com") id="startbutton">Begin Test ↗</button>
+    </div>
+</body>
+</html>
