@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4: Moodle</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <script src="{{ url_for('static', filename='taskmanagement.js') }}"></script>
+    <div class="container">
+        <h1>Task 4: Moodle Dashboard</h1>
+
+        <div class="instructions">
+            <h2></h2>
+            <p><strong>Given a Moodle dashboard with an image and large Comic Sans font, make the Moodle dashboard look like the given target (aka normal dashboard)</strong></p>
+            <p><strong>You will already be logged into Moodle under a test account, so there is no need to use your personal account.</strong></p>
+            <p><strong>You will have 5 minutes to complete this task, after which the tab will close. The timer will start as soon as you click the "Begin Test" button below. You are not allowed to use outside resources, such as Google or ChatGPT. If you finish the task early, raise your hand and we will confirm your completion. We will not be able to answer questions regarding the task, but are available if you are encountering technical difficulties with the testing platform.</strong></p>
+            <img src="{{url_for('static', filename='chart.png') }}">
+        </div>
+
+        <p class="timer" id="timer">05:00</p>
+
+        <button onclick=startStopTimer("https://moodle.carleton.edu") id="startbutton">Begin Test ↗</button>
+    </div>
+</body>
+</html>
