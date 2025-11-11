@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Submission Successful</title>
+    <title>Consent Form</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -20,7 +20,7 @@
         <br>
         <p>Please feel free to contact us or our advisor if you have any questions, concerns or comments about the project.</p>
         <br>
-        <form action="/submit-data" method="post">
+        <form action="/submit_consent_form" method="POST">
         <input type="checkbox" id="option1" name="preferences" value="Consent">
         <label for="option1">Accept</label><br>
 
