@@ -11,7 +11,7 @@ function startStopTimer(website) {
     }
 }
 
-function startTimer(website) {
+function startTimer(website, taskId) {
     const timerDisplay = document.getElementById('timer')
     secondsRemaining = 300
     document.getElementById('startbutton').innerHTML = "I'm Finished"
@@ -26,7 +26,7 @@ function startTimer(website) {
             clearInterval(timerInterval)
             websiteWindow.close()
             alert('Time is up! You will now be redirected to the questionnaire.')
-            window.location.href = '/form_unprompted'
+            window.location.href = '/form_unprompted?previousTask='+taskId
         }
         
         secondsRemaining--

@@ -14,6 +14,10 @@ if not os.path.exists(DATA_DIR):
 def index():
     return render_template('homepage.html')
 
+@app.route('/homepage_final')
+def homepage_final():
+    return render_template('homepage_final_thing.html')
+
 @app.route('/form_prompted')
 def form_p():
     return render_template('form_prompted.html')
