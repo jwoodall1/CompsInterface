@@ -43,6 +43,10 @@ def task4():
 def purgatory():
     return render_template('purgatory.html')
 
+@app.route('/consent_form')
+def consent_form():
+    return render_template('consent_form.html')
+
 
 @app.route('/submit', methods=['POST'])
 def submit():
@@ -66,8 +70,8 @@ def submit():
     
     return render_template('success.html')
 
-@app.route('/submit_contact_form', methods = ['Post'])
-def contact_data():
+@app.route('/submit_consent_form', methods = ['POST'])
+def consent_data():
     preferences = request.form.getlist('preferences')
 
 
@@ -79,11 +83,11 @@ def contact_data():
 
     }
 
-    filename = f"{DATA_DIR}/submission_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    filename = f"{DATA_DIR}/consent_submission_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
     with open(filename, 'w') as f:
         json.dump(submission, f, indent=2)
 
-    return render_template('Homepage.html')
+    return render_template('consent_success.html')
 
 
 
