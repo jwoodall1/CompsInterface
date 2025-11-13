@@ -38,15 +38,17 @@ def task3():
 def task4():
     return render_template('tasks/task4.html')
 
-
 @app.route('/purgatory')
 def purgatory():
     return render_template('purgatory.html')
 
+@app.route('/begin')
+def begin():
+    return render_template('begin_experiment.html')
+
 @app.route('/consent_form')
 def consent_form():
     return render_template('consent_form.html')
-
 
 @app.route('/submit', methods=['POST'])
 def submit():
