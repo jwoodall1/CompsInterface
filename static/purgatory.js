@@ -13,7 +13,7 @@ function startTimer() {
             clearInterval(timerInterval)
             websiteWindow.close()
             alert('you are now out of purgatory')
-            window.location.href = '/form_unprompted'
+            window.location.href = '/form_gateway'
         }
         
         secondsRemaining--

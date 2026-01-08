@@ -26,7 +26,7 @@ function startTimer(website) {
             clearInterval(timerInterval)
             websiteWindow.close()
             alert('Time is up! You will now be redirected to the questionnaire.')
-            window.location.href = '/form_unprompted'
+            window.location.href = '/form_gateway'
         }
         
         secondsRemaining--
