@@ -26,7 +26,7 @@ function startTimer(website, taskId) {
             clearInterval(timerInterval)
             websiteWindow.close()
             alert('Time is up! You will now be redirected to the questionnaire.')
-            window.location.href = '/form_unprompted?previousTask='+taskId
+            window.location.href = '/form_unprompted'
         }
         
         secondsRemaining--

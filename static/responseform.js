@@ -11,7 +11,6 @@ function changeResponseButton() {
         //redirect back when time is up
         if (secondsRemaining <= 0) {
             clearInterval(timerInterval)
-            websiteWindow.close()
             alert('you are now out of purgatory')
             window.location.href = '/form_unprompted'
         }

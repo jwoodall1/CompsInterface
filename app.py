@@ -2,7 +2,7 @@ import json
 import os
 from datetime import datetime
 
-from flask import Flask, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, url_for, make_response
 
 app = Flask(__name__)
 
@@ -115,11 +115,23 @@ def consent_data():
     )
     with open(filename, "w") as f:
         json.dump(submission, f, indent=2)
-    if preferences == ["Consent"]:
-        return render_template("consent_success.html")
-    else:
-        return render_template("consent_declined.html")
 
+    if preferences == ["Consent"]:
+        resp = make_response(render_template("consent_success.html"))
+        resp.set_cookie("currentTask", "1")
+        return resp
+    else:
+        resp = make_response(render_template("consent_declined.html"))
+        resp.set_cookie("currentTask", "1")
+        return resp
+
+@app.route("/next_task")
+def next_task():
+    current_task = int(request.cookies.get("currentTask", "1"))
+    next_task = current_task + 1
+    resp = make_response(render_template("tasks/task" + str(next_task) + ".html"))
+    resp.set_cookie("currentTask", str(next_task))
+    return resp
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5005)
