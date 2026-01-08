@@ -11,7 +11,7 @@ function startStopTimer(website) {
     }
 }
 
-function startTimer(website) {
+function startTimer(website, taskId) {
     const timerDisplay = document.getElementById('timer')
     secondsRemaining = 300
     document.getElementById('startbutton').innerHTML = "I'm Finished"

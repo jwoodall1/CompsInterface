@@ -1,79 +1,36 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, redirect, url_for
 import json
+import os
 from datetime import datetime
 import os
-import psycopg2
-from psycopg2 import extras
-import uuid
-import random
 
 app = Flask(__name__)
-app.secret_key = os.environ.get('SECRET_KEY', 'developmentsupersecretkey')
 
-# Database connection
-def get_db_connection():
-    conn = psycopg2.connect(
-        os.environ.get('DATABASE_URL', 'dbname=comps_db user=postgres password=comps2026 host=localhost')
-    )
-    return conn
+# create data directory if there isn't one
+DATA_DIR = 'data'
+if not os.path.exists(DATA_DIR):
+    os.makedirs(DATA_DIR)
 
-def init_db():
-    conn = get_db_connection()
-    cur = conn.cursor()
-    # Create participants table
-    cur.execute('''
-        CREATE TABLE IF NOT EXISTS participants (
-            participant_id TEXT PRIMARY KEY,
-            name TEXT,
-            prompted BOOLEAN,
-            consent BOOLEAN,
-            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    ''')
-    # Create wide responses table
-    cur.execute('''
-        CREATE TABLE IF NOT EXISTS responses (
-            participant_id TEXT PRIMARY KEY REFERENCES participants(participant_id),
-            task1_id TEXT,
-            task1_r1 TEXT,
-            task1_r2 TEXT,
-            task1_r3 TEXT,
-            task2_id TEXT,
-            task2_r1 TEXT,
-            task2_r2 TEXT,
-            task2_r3 TEXT,
-            task3_id TEXT,
-            task3_r1 TEXT,
-            task3_r2 TEXT,
-            task3_r3 TEXT,
-            task4_id TEXT,
-            task4_r1 TEXT,
-            task4_r2 TEXT,
-            task4_r3 TEXT,
-            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-        )
-    ''')
-    conn.commit()
-    cur.close()
-    conn.close()
 
-# Initialize DB on start
-try:
-    init_db()
-except Exception as e:
-    print(f"Database initialization failed: {e}")
-
-@app.route('/')
+@app.route("/")
 def index():
-    return render_template('homepage.html')
+    return render_template("homepage.html")
 
-@app.route('/form_prompted')
+
+@app.route("/homepage_final")
+def homepage_final():
+    return render_template("homepage_final_thing.html")
+
+
+@app.route("/form_prompted")
 def form_p():
-    return render_template('form_prompted.html')
+    return render_template("form_prompted.html")
 
-@app.route('/form_unprompted')
+
+@app.route("/form_unprompted")
 def form_u():
-    return render_template('form_unprompted.html')
+    return render_template("form_unprompted.html")
+
 
 @app.route('/form_gateway')
 def form_gateway():
@@ -96,19 +53,32 @@ def start_experiment():
     first_task = session['task_order'][0]
     return redirect(url_for('show_task', task_id=first_task))
 
-@app.route('/purgatory')
+@app.route("/purgatory")
 def purgatory():
-    return render_template('purgatory.html')
+    return render_template("purgatory.html")
 
-@app.route('/begin')
+
+@app.route("/begin")
 def begin():
-    return render_template('begin_experiment.html')
+    return render_template("begin_experiment.html")
 
-@app.route('/consent_form')
+
+@app.route("/consent_form")
 def consent_form():
-    return render_template('consent_form.html')
+    return render_template("consent_form.html")
 
-@app.route('/submit', methods=['POST'])
+
+@app.route("/consent_declined")
+def consent_declined():
+    return render_template("consent_declined.html")
+
+
+@app.route("/consent_success")
+def consent_success():
+    return render_template("consent_success.html")
+
+
+@app.route("/submit", methods=["POST"])
 def submit():
     participant_id = session.get('participant_id')
     task_order = session.get('task_order')
@@ -183,7 +153,7 @@ def submit():
             
         return render_template('success.html')
 
-@app.route('/submit_consent_form', methods = ['POST'])
+@app.route("/submit_consent_form", methods=["POST"])
 def consent_data():
     name = request.form.get('name')
     preferences = request.form.getlist('preferences')

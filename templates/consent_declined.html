@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Submission Successful</title>
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='style.css') }}"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Thank You!</h1>
+            <p style="text-align: center; font-size: 18px; margin: 30px 0">
+                Your response has been submitted successfully.
+            </p>
+            <a
+                href="/"
+                style="
+                    display: block;
+                    text-align: center;
+                    color: red;
+                    text-decoration: none;
+                "
+                >You have indicated that you do not wish to participate in the
+                experiment. Please let us know if this was a mistake.</a
+            >
+        </div>
+    </body>
+</html>

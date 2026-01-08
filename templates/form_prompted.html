@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <script src="{{ url_for('static', filename='responseform.js') }}"></script>
     <div class="container">
         <h1>Tech Support</h1>
         <p class="subtitle">Let us know what's wrong!</p>
@@ -37,7 +38,7 @@
                 <p class="example">Example: I think my file is too large because I have integrated many images.</p>
                 <textarea id="cause_hypothesis" name="cause_hypothesis" rows="4" required></textarea>
             </div>
-
+            <p id="tasknumber" style="display:none;">{{ previous_task }}</p>
             <button type="submit">Submit Response</button>
         </form>
     </div>
