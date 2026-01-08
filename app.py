@@ -1,6 +1,7 @@
 import json
 import os
 from datetime import datetime
+from pydoc import render_doc
 
 from flask import Flask, redirect, render_template, request, url_for, make_response
 
@@ -131,9 +132,17 @@ def consent_data():
 def next_task():
     current_task = int(request.cookies.get("currentTask", "1"))
     next_task = current_task + 1
+    if next_task > 4:
+        return render_template("thankyou.html")
     resp = make_response(render_template("tasks/task" + str(next_task) + ".html"))
     resp.set_cookie("currentTask", str(next_task))
     return resp
+
+
+@app.route("/thankyou")
+def thankyou():
+    return render_template("thankyou.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5005)
