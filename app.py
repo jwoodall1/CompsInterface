@@ -83,6 +83,7 @@ def submit():
     goal = request.form.get("goal", "")
     steps_taken = request.form.get("steps_taken", "")
     cause_hypothesis = request.form.get("cause_hypothesis", "")
+    problem_description = request.form.get("problem_description", "")
 
     # make submission record
     submission = {
@@ -90,6 +91,7 @@ def submit():
         "goal": goal,
         "steps_taken": steps_taken,
         "cause_hypothesis": cause_hypothesis,
+        "problem_description": problem_description,
     }
 
     # save to json
