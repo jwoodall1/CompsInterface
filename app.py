@@ -1,101 +1,125 @@
-from flask import Flask, render_template, request, redirect, url_for
 import json
-from datetime import datetime
 import os
+from datetime import datetime
+
+from flask import Flask, redirect, render_template, request, url_for
 
 app = Flask(__name__)
 
 # create data directory if there isn't one
-DATA_DIR = 'data'
+DATA_DIR = "data"
 if not os.path.exists(DATA_DIR):
     os.makedirs(DATA_DIR)
 
-@app.route('/')
+
+@app.route("/")
 def index():
-    return render_template('homepage.html')
+    return render_template("homepage.html")
 
-@app.route('/homepage_final')
+
+@app.route("/homepage_final")
 def homepage_final():
-    return render_template('homepage_final_thing.html')
+    return render_template("homepage_final_thing.html")
 
-@app.route('/form_prompted')
+
+@app.route("/form_prompted")
 def form_p():
-    return render_template('form_prompted.html')
+    return render_template("form_prompted.html")
 
-@app.route('/form_unprompted')
+
+@app.route("/form_unprompted")
 def form_u():
-    return render_template('form_unprompted.html')
+    return render_template("form_unprompted.html")
 
-@app.route('/tasks/task1')
+
+@app.route("/tasks/task1")
 def task1():
-    return render_template('tasks/task1.html')
+    return render_template("tasks/task1.html")
 
-@app.route('/tasks/task2')
+
+@app.route("/tasks/task2")
 def task2():
-    return render_template('tasks/task2.html')
+    return render_template("tasks/task2.html")
 
-@app.route('/tasks/task3')
+
+@app.route("/tasks/task3")
 def task3():
-    return render_template('tasks/task3.html')
+    return render_template("tasks/task3.html")
 
-@app.route('/tasks/task4')
+
+@app.route("/tasks/task4")
 def task4():
-    return render_template('tasks/task4.html')
+    return render_template("tasks/task4.html")
 
-@app.route('/purgatory')
+
+@app.route("/purgatory")
 def purgatory():
-    return render_template('purgatory.html')
+    return render_template("purgatory.html")
 
-@app.route('/begin')
+
+@app.route("/begin")
 def begin():
-    return render_template('begin_experiment.html')
+    return render_template("begin_experiment.html")
 
-@app.route('/consent_form')
+
+@app.route("/consent_form")
 def consent_form():
-    return render_template('consent_form.html')
+    return render_template("consent_form.html")
 
-@app.route('/submit', methods=['POST'])
+
+@app.route("/consent_declined")
+def consent_declined():
+    return render_template("consent_declined.html")
+
+
+@app.route("/consent_success")
+def consent_success():
+    return render_template("consent_success.html")
+
+
+@app.route("/submit", methods=["POST"])
 def submit():
     # get form data
-    goal = request.form.get('goal', '')
-    steps_taken = request.form.get('steps_taken', '')
-    cause_hypothesis = request.form.get('cause_hypothesis', '')
-    
+    goal = request.form.get("goal", "")
+    steps_taken = request.form.get("steps_taken", "")
+    cause_hypothesis = request.form.get("cause_hypothesis", "")
+
     # make submission record
     submission = {
-        'timestamp': datetime.now().isoformat(),
-        'goal': goal,
-        'steps_taken': steps_taken,
-        'cause_hypothesis': cause_hypothesis
+        "timestamp": datetime.now().isoformat(),
+        "goal": goal,
+        "steps_taken": steps_taken,
+        "cause_hypothesis": cause_hypothesis,
     }
-    
+
     # save to json
     filename = f"{DATA_DIR}/submission_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-    with open(filename, 'w') as f:
+    with open(filename, "w") as f:
         json.dump(submission, f, indent=2)
-    
-    return render_template('success.html')
 
-@app.route('/submit_consent_form', methods = ['POST'])
+    return render_template("success.html")
+
+
+@app.route("/submit_consent_form", methods=["POST"])
 def consent_data():
-    preferences = request.form.getlist('preferences')
-
+    preferences = request.form.getlist("preferences")
 
     submission = {
-        'timestamp': datetime.now().isoformat(),
-        'form_type': 'consent',
-        'preferences': preferences
-
-
+        "timestamp": datetime.now().isoformat(),
+        "form_type": "consent",
+        "preferences": preferences,
     }
 
-    filename = f"{DATA_DIR}/consent_submission_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-    with open(filename, 'w') as f:
+    filename = (
+        f"{DATA_DIR}/consent_submission_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    )
+    with open(filename, "w") as f:
         json.dump(submission, f, indent=2)
+    if preferences == ["Consent"]:
+        return render_template("consent_success.html")
+    else:
+        return render_template("consent_declined.html")
 
-    return render_template('consent_success.html')
 
-
-
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=42069)
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=42069)
