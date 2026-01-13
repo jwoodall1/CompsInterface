@@ -12,7 +12,7 @@ function startTimer() {
         if (secondsRemaining <= 0) {
             clearInterval(timerInterval)
             alert('you are now out of purgatory')
-            window.location.href = '/form_unprompted'
+            window.location.href = '/form_gateway'
         }
         
         secondsRemaining--
