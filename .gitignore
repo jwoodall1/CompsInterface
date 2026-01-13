@@ -1,0 +1,22 @@
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment Variables (Sensitive Data)
+*.env
+.env
+
+# IDEs
+.vscode/
+.idea/
+
+# OS Junk
+.DS_Store
+Thumbs.db
