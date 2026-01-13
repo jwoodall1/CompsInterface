@@ -22,11 +22,10 @@ def get_db_connection():
         return psycopg2.connect(db_url)
     
     return psycopg2.connect(
-        dbname=os.environ.get('DB_NAME', 'comps_db'),
-        user=os.environ.get('DB_USER', 'postgres'),
-        password=os.environ.get('DB_PASS', 'comps2026'),
+        dbname=os.environ.get('DB_NAME', 'hoppera2'),
+        user=os.environ.get('DB_USER', 'hoppera2'),
+        password=os.environ.get('DB_PASS', 'supersecretpassword'),
         host=os.environ.get('DB_HOST', 'localhost'),
-        port=os.environ.get('DB_PORT', '5432')
     )
 
 def init_db():
@@ -230,7 +229,7 @@ def consent_data():
         cur = conn.cursor()
         
         while True:
-            candidate_id = random.randint(100, 999)
+            candidate_id = random.randint(0, 999)
             # Check if this ID already exists
             cur.execute("SELECT 1 FROM participants WHERE participant_id = %s", (candidate_id,))
             if not cur.fetchone():
