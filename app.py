@@ -10,6 +10,9 @@ from dotenv import load_dotenv
 
 # Load environment variables from .env file
 load_dotenv('credentials.env')
+from pydoc import render_doc
+
+from flask import Flask, redirect, render_template, request, url_for, make_response
 
 app = Flask(__name__)
 app.secret_key = os.environ.get('SECRET_KEY', 'developmentsupersecretkey')
@@ -256,3 +259,44 @@ def consent_data():
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=42069)
+    preferences = request.form.getlist("preferences")
+
+    submission = {
+        "timestamp": datetime.now().isoformat(),
+        "form_type": "consent",
+        "preferences": preferences,
+    }
+
+    filename = (
+        f"{DATA_DIR}/consent_submission_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+    )
+    with open(filename, "w") as f:
+        json.dump(submission, f, indent=2)
+
+    if preferences == ["Consent"]:
+        resp = make_response(render_template("consent_success.html"))
+        resp.set_cookie("currentTask", "1")
+        return resp
+    else:
+        resp = make_response(render_template("consent_declined.html"))
+        resp.set_cookie("currentTask", "1")
+        return resp
+
+@app.route("/next_task")
+def next_task():
+    current_task = int(request.cookies.get("currentTask", "1"))
+    next_task = current_task + 1
+    if next_task > 4:
+        return render_template("thankyou.html")
+    resp = make_response(render_template("tasks/task" + str(next_task) + ".html"))
+    resp.set_cookie("currentTask", str(next_task))
+    return resp
+
+
+@app.route("/thankyou")
+def thankyou():
+    return render_template("thankyou.html")
+
+
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0", port=5005)
