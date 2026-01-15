@@ -1,5 +1,3 @@
-from asyncio.tasks import current_task
-from zipfile._path import CompleteDirs
 from flask import Flask, render_template, request, redirect, url_for, session
 import json
 import os
@@ -115,8 +113,9 @@ def start_experiment():
     
     session['current_task_index'] = 0
     # Rotate task order
-    session['task_order'] = deque(session['task_order'])
-    session['task_order'].rotate(random.randint(0, 3))
+    d = deque(session['task_order'])
+    d.rotate(random.randint(0, 3))
+    session['task_order'] = list(d)
     
     session['all_responses'] = {}
     first_task = session['current_task_index']
