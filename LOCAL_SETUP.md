@@ -43,6 +43,6 @@ In your terminal (with the virtual environment active):
 ```bash
 python app.py
 ```
-The app will be available at: [stearns.mathcs.carleton.edu:5132] on the lap computers.
+The app will be available at: [stearns.mathcs.carleton.edu:5132](stearns.mathcs.carleton.edu:5132) on the lab computers.
 
 ---
