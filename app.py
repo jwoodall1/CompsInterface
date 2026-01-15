@@ -230,10 +230,7 @@ def consent_data():
     participant_id = None
     prompted = random.choice([True, False])
     
-<<<<<<< HEAD
-=======
     # Set initial task order
->>>>>>> 1835401 (randomly rotate tasks)
     tasks = ['task1', 'task2', 'task3', 'task4']
     
     # Save to DB and generate a unique 3-digit ID
