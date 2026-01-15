@@ -223,7 +223,6 @@ def consent_data():
     participant_id = None
     prompted = random.choice([True, False])
     
-    # Randomize task order
     tasks = ['task1', 'task2', 'task3', 'task4']
     
     # Save to DB and generate a unique 3-digit ID
@@ -257,30 +256,6 @@ def consent_data():
     session['consent'] = consent
     return render_template('consent_success.html')
 
-if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=42069)
-    preferences = request.form.getlist("preferences")
-
-    submission = {
-        "timestamp": datetime.now().isoformat(),
-        "form_type": "consent",
-        "preferences": preferences,
-    }
-
-    filename = (
-        f"{DATA_DIR}/consent_submission_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
-    )
-    with open(filename, "w") as f:
-        json.dump(submission, f, indent=2)
-
-    if preferences == ["Consent"]:
-        resp = make_response(render_template("consent_success.html"))
-        resp.set_cookie("currentTask", "1")
-        return resp
-    else:
-        resp = make_response(render_template("consent_declined.html"))
-        resp.set_cookie("currentTask", "1")
-        return resp
 
 @app.route("/next_task")
 def next_task():
@@ -299,4 +274,4 @@ def thankyou():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5005)
+    app.run(debug=True, host="0.0.0.0", port=5132)
