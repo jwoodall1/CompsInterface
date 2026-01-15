@@ -111,11 +111,12 @@ def start_experiment():
     if 'task_order' not in session:
         return redirect(url_for('consent_form'))
     
-    session['current_task_index'] = 0
     # Rotate task order
     d = deque(session['task_order'])
     d.rotate(random.randint(0, 3))
     session['task_order'] = list(d)
+    
+    session['current_task_index'] = session['task_order'][0]
     
     session['all_responses'] = {}
     first_task = session['current_task_index']
