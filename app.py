@@ -265,6 +265,8 @@ def consent_data():
     session['prompted'] = prompted
     session['task_order'] = tasks
     session['consent'] = consent
+    if not consent:
+        return render_template('consent_declined.html')
     return render_template('consent_success.html')
 
 
