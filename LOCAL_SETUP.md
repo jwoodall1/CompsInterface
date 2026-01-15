@@ -16,7 +16,7 @@ ssh user@stearns.mathcs.carleton.edu
 - or use VS code's ssh extension
 
 ## 3. Clone the Repository
-Open a terminal (PowerShell or Bash) and run:
+Open a terminal on stearns (PowerShell or Bash) and run:
 ```bash
 git clone https://github.com/jwoodall1/CompsInterface.git
 cd CompsInterface
