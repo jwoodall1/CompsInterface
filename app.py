@@ -260,7 +260,6 @@ def consent_data():
     session['participant_id'] = participant_id
     session['prompted'] = prompted
     session['task_order'] = tasks
-    session['current_task_index'] = 0
     session['consent'] = consent
     return render_template('consent_success.html')
 
