@@ -104,7 +104,7 @@ def form_gateway():
 
 @app.route('/tasks/<task_id>')
 def show_task(task_id):
-    return render_template(f'tasks/{task_id}.html')
+    return render_template(f'tasks/task{task_id}.html')
 
 @app.route('/start_experiment')
 def start_experiment():
@@ -116,10 +116,14 @@ def start_experiment():
     d.rotate(random.randint(0, 3))
     session['task_order'] = list(d)
     
-    session['current_task_index'] = session['task_order'][0]
+    # current_task_index must be an integer index into the task_order list (0-based).
+    # Previously this was incorrectly set to a task id string which caused list indexing
+    # with a string later in `submit()` and triggered:
+    # "TypeError: list indices must be integers or slices, not str."
+    session['current_task_index'] = 0
     
     session['all_responses'] = {}
-    first_task = session['current_task_index']
+    first_task = session['task_order'][0]
     return redirect(url_for('show_task', task_id=first_task))
 
 @app.route("/purgatory")
