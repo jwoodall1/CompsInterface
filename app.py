@@ -104,7 +104,7 @@ def form_gateway():
 
 @app.route('/tasks/<task_id>')
 def show_task(task_id):
-    return render_template(f'tasks/task{task_id}.html')
+    return render_template(f'tasks/{task_id}.html')
 
 @app.route('/start_experiment')
 def start_experiment():
