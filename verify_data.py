@@ -8,9 +8,9 @@ load_dotenv('credentials.env')
 def verify_data():
     try:
         conn = psycopg2.connect(
-            dbname=os.environ.get('DB_NAME', 'comps_db'),
-            user=os.environ.get('DB_USER', 'postgres'),
-            password=os.environ.get('DB_PASS', 'comps2026'),
+            dbname=os.environ.get('DB_NAME', 'hoppera2'),
+            user=os.environ.get('DB_USER', 'hoppera2'),
+            password=os.environ.get('DB_PASS', 'supersecretpassword'),
             host=os.environ.get('DB_HOST', 'localhost'),
             port=os.environ.get('DB_PORT', '5432')
         )
