@@ -11,7 +11,7 @@ function startTimer() {
         //redirect back when time is up
         if (secondsRemaining <= 0) {
             clearInterval(timerInterval)
-            alert('you are now out of purgatory')
+            alert('Thanks for your patience. You will now be redirected to the next task.')
             window.location.href = '/form_gateway'
         }
         
