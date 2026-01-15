@@ -12,7 +12,7 @@ To access the remote database, and run the website, log into stearns via ssh as 
 
 ```bash
 ssh user@stearns.mathcs.carleton.edu
-```.
+```
 - or use VS code's ssh extension
 
 ## 3. Clone the Repository
