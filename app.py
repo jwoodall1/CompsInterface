@@ -81,7 +81,7 @@ init_db()
 
 @app.route("/")
 def index():
-    return render_template("homepage.html")
+    return redirect(url_for('start_experiment'))
 
 @app.route("/homepage_final")
 def homepage_final():
