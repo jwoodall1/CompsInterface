@@ -1,3 +1,5 @@
+from asyncio.tasks import current_task
+from zipfile._path import CompleteDirs
 from flask import Flask, render_template, request, redirect, url_for, session
 import json
 import os
@@ -7,6 +9,7 @@ from psycopg2 import extras
 import uuid
 import random
 from dotenv import load_dotenv
+from collections import deque
 
 # Load environment variables from .env file
 load_dotenv('credentials.env')
@@ -111,8 +114,12 @@ def start_experiment():
         return redirect(url_for('consent_form'))
     
     session['current_task_index'] = 0
+    # Rotate task order
+    session['task_order'] = deque(session['task_order'])
+    session['task_order'].rotate(random.randint(0, 3))
+    
     session['all_responses'] = {}
-    first_task = session['task_order'][0]
+    first_task = session['current_task_index']
     return redirect(url_for('show_task', task_id=first_task))
 
 @app.route("/purgatory")
@@ -223,6 +230,10 @@ def consent_data():
     participant_id = None
     prompted = random.choice([True, False])
     
+<<<<<<< HEAD
+=======
+    # Set initial task order
+>>>>>>> 1835401 (randomly rotate tasks)
     tasks = ['task1', 'task2', 'task3', 'task4']
     
     # Save to DB and generate a unique 3-digit ID
