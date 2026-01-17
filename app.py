@@ -223,7 +223,7 @@ def submit():
         except Exception as e:
             print(f"Error saving final responses: {e}")
             
-        return render_template('success.html')
+        return render_template('thankyou.html')
 
 @app.route("/submit_consent_form", methods=["POST"])
 def consent_data():
