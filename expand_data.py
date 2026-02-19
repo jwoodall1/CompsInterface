@@ -5,9 +5,6 @@ import pandas as pd
 
 #https://mathworld.wolfram.com/Box-MullerTransformation.html
 
-
-
-
 #setup
 
 # unprompted
