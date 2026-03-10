@@ -3,19 +3,30 @@ import pandas as pd
 
 #Box-Muller transformation 
 
+#ressources
+
 #https://mathworld.wolfram.com/Box-MullerTransformation.html
+
+#https://www.youtube.com/watch?v=YhLokU9qDj4
+
+#https://numpy.org/doc/2.1/reference/random/generated/numpy.random.normal.html
+
+#https://numpy.org/devdocs/reference/random/generated/numpy.random.seed.html
+
+#https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html
+
 
 #setup
 
 # unprompted
 # mean was ~2.45, variance ~0.21
-mu_unprompted = 2.453125
-sigma_unprompted = np.sqrt(0.21015625) # stand dev is just sqrt(variance)
+mean_unprompted = 2.453125
+standev_unprompted = np.sqrt(0.21015625) # stand dev is just sqrt(variance)
 
 # prompted
 # mean ~2.73, variance ~0.84 
-mu_prompted = 2.734375
-sigma_prompted = np.sqrt(0.8372395833)
+mean_prompted = 2.734375
+standev_prompted = np.sqrt(0.8372395833)
 
 # target num of experts
 target_n = 100
@@ -24,16 +35,16 @@ target_n = 100
 np.random.seed(42)
 
 # generate raw scores using a normal distribution
-raw_unprompted = np.random.normal(mu_unprompted, sigma_unprompted, target_n)
-raw_prompted = np.random.normal(mu_prompted, sigma_prompted, target_n)
+raw_unprompted = np.random.normal(mean_unprompted, standev_unprompted, target_n)
+raw_prompted = np.random.normal(mean_prompted, standev_prompted, target_n)
 
 # cleanup
 
-# round to nearest 0.25 (e.g. 3.25, 4.50, 2.75)
-step = 0.25
+# round to nearest 0.25
+round_val= 0.25
 
-clean_unprompted = np.round(raw_unprompted / step) * step
-clean_prompted = np.round(raw_prompted / step) * step
+clean_unprompted = np.round(raw_unprompted / round_val) * round_val
+clean_prompted = np.round(raw_prompted / round_val) * round_val
 
 # clip to 1-5 after rounding
 clean_unprompted = np.clip(clean_unprompted, 1, 5)
