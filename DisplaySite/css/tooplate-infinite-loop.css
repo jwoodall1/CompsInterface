@@ -80,7 +80,7 @@ blockquote {
   position: fixed;
   width: 100%;
   z-index: 1000;
-  background-color: transparent;
+  background-color: #369;
   transition: all 0.3s ease;
 }
 
@@ -146,7 +146,8 @@ blockquote {
 
 #infinite {
 	background-color: #222;
-  background-image: url(../img/infinite-loop-01.jpg);
+  background-image: url(../img/Carleton.jpg);
+  background-size: cover;
   background-repeat: no-repeat;
   height: 100vh;
   min-height: 375px;
@@ -158,7 +159,7 @@ blockquote {
     background-size: cover;
   }
 }
-
+/*
 @media (min-height: 830px) {
   #infinite {
     background-position: center -210px;
@@ -182,13 +183,14 @@ blockquote {
     background-position: center -450px;
   }
 }
-
+*/
 .tm-hero-text-container {
   width: 100%;
   height: 100%;
   display: flex;
   flex-flow: column;
   justify-content: center;
+  backdrop-filter: blur(3px); 
 }
 
 .tm-hero-text-container-inner {
@@ -268,7 +270,7 @@ blockquote {
 /* Testimonials */
 #testimonials {
   color: white;
-  background-image: url(../img/infinite-loop-02.jpg);
+  background-image: url(../img/Chapel.webp);
   background-size: cover;
   background-repeat: no-repeat;
   background-size: 100%;
@@ -277,7 +279,7 @@ blockquote {
 
 @media (max-width: 991px) {
   #testimonials {
-    background-image: url(../img/infinite-loop-02-mobile.jpg);
+    background-image: url(../img/Chapel.webp);
   }
 }
 
